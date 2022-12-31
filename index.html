@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ManTou</title>
+    <style>
+      body {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(225, 225, 225);
+      }
+      * {
+        margin: 0;
+      }
+      div {
+        margin: 10px;
+        border-radius: 10px;
+        box-shadow: 3px 3px 5px rgb(175, 175, 175);
+      }
+      .zoomIn {
+        transition: all 0.25s ease-out;
+      }
+      .zoomIn:hover {
+        transform: scale(1.1);
+      }
+      .infoBackground {
+        transform: translateY(-400px);
+        animation: moveUpAndDown 10s ease-in-out infinite alternate;
+        background-color: rgba(255, 255, 255, 50%);
+        filter: blur(10px);
+        z-index: -1;
+      }
+      @keyframes moveUpAndDown {
+        from {
+          transform: translateY(-400px);
+        }
+        to {
+          transform: translateY(-650px);
+        }
+      }
+      .fade {
+        animation: fade 2.5s infinite;
+      }
+      @keyframes fade {
+        from {
+          color: rgba(0, 0, 0, 50%);
+        }
+        50% {
+          color: black;
+        }
+        to {
+          color: rgba(0, 0, 0, 50%);
+        }
+      }
+      .float_Horizontal {
+        transform: translateX(-2px);
+        animation: fade 2.5s infinite,
+          float_Horizontal 2s ease-in-out infinite alternate;
+      }
+      @keyframes float_Horizontal {
+        form {
+          transform: translateX(-2px);
+        }
+        to {
+          transform: translateX(2px);
+        }
+      }
+      .video {
+        height: 100%;
+        flex: 2;
+        margin: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .videoTip {
+        font-size: 10px;
+        color: white;
+        width: max-content;
+        padding: 8px;
+        background-color: black;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        transform: translate(250px, -200px);
+        visibility: hidden;
+      }
+    </style>
+    <script>
+      function avatarTip(canShow) {
+        var tip = document.getElementById("avatarTip");
+        if (canShow) {
+          tip.style.visibility = "visible";
+        } else tip.style.visibility = "hidden";
+      }
+      function bilibili() {
+        window.open(
+          "https://space.bilibili.com/631117548/?spm_id_from=333.999.0.0"
+        );
+      }
+      var haveClickedSub;
+      function sub() {
+        if (!haveClickedSub) {
+          alert("你关注了吗？");
+          haveClickedSub = true;
+          document.getElementById("click").innerHTML = "Click Again";
+        } else {
+          var i = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+          switch (i) {
+            case 1:
+              alert("你真的关注了？");
+              break;
+            case 2:
+              alert("赶紧去关注啊！");
+              break;
+            case 3:
+              alert("不关注？我抽死你！");
+          }
+        }
+      }
+      function highestViewVideoTip(canShow) {
+        var tip = document.getElementById("highestViewVideoTip");
+        if (canShow) {
+          tip.style.visibility = "visible";
+        } else tip.style.visibility = "hidden";
+      }
+      function highestViewVideo() {
+        window.open(
+          "https://www.bilibili.com/video/BV19F41157di?spm_id_from=333.999.0.0&vd_source=7ef42f67be72399c5c4b2e04a9831046"
+        );
+      }
+      function newestVideoTip(canShow) {
+        var tip = document.getElementById("newestVideoTip");
+        if (canShow) {
+          tip.style.visibility = "visible";
+        } else tip.style.visibility = "hidden";
+      }
+      function newestVideo() {
+        window.open(
+          "https://www.bilibili.com/video/BV1ef4y1d7DZ?spm_id_from=333.999.0.0&vd_source=7ef42f67be72399c5c4b2e04a9831046"
+        );
+      }
+    </script>
+  </head>
+
+  <body>
+    <div
+      style="
+        width: 50%;
+        height: 375px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        overflow: hidden;
+      "
+    >
+      <info
+        style="
+          margin-top: 80px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <avatar
+          style="width: 100px; height: 100px; margin: 20px; display: block"
+        >
+          <img
+            src="Data/Avatar.jpg"
+            alt="avatar"
+            width="100%"
+            height="100%"
+            class="zoomIn"
+            style="
+              border-radius: 90px;
+              box-shadow: 0px 0px 7.5px rgb(150, 150, 150);
+            "
+            onmouseover="avatarTip(true)"
+            onmouseout="avatarTip(false)"
+            onclick="bilibili()"
+          />
+          <p
+            id="avatarTip"
+            style="
+              font-size: 10px;
+              color: white;
+              width: max-content;
+              padding: 8px;
+              background-color: black;
+              border-top-left-radius: 15px;
+              border-top-right-radius: 15px;
+              border-bottom-right-radius: 15px;
+              transform: translate(80px, -100px);
+              visibility: hidden;
+            "
+          >
+            点击进入Bilibili主页
+          </p>
+        </avatar>
+        <name style="margin: 20px">
+          <p
+            style="
+              font-size: 30px;
+              text-align: center;
+              text-shadow: -1px -1px white, 1px -1px white, 1px 1px white,
+                -1px 1px white;
+              margin: 0;
+            "
+          >
+            <b>擺爛還得看你饅哥</b>
+          </p>
+          <p style="font-size: 20px; text-align: center; color: white">
+            無聊的饅頭
+          </p>
+        </name>
+      </info>
+      <p
+        style="
+          font-size: 10px;
+          color: rgba(0, 0, 0, 50%);
+          margin: 15px;
+          margin-top: 20px;
+          align-self: flex-end;
+        "
+      >
+        <b>Latest Update: 2022/7/15 17:56</b>
+      </p>
+      <img
+        src="Data/InfoBackground.png"
+        alt="infoBackground"
+        width="1000px"
+        height="1000px"
+        class="infoBackground"
+      />
+    </div>
+    <detail
+      style="
+        width: 80%;
+        height: 500px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      "
+    >
+      <div
+        style="
+          height: 100%;
+          flex: 1;
+          padding-left: 25px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          background-color: rgb(200, 200, 200);
+        "
+      >
+        <sub
+          style="
+            height: 55px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            font-size: medium;
+          "
+        >
+          <p style="height: auto" onclick="sub()">
+            <b style="font-size: 25px">粉丝</b><br />4996
+          </p>
+          <p
+            class="float_Horizontal"
+            style="font-size: 10px; margin-left: 15px; margin-bottom: 1px"
+          >
+            <b>&lt</b>
+          </p>
+          <p class="fade" style="font-size: 10px; margin-left: 5px">
+            <b id="click">Click</b>
+          </p>
+        </sub>
+        <p><b style="font-size: 25px">播放</b><br />266k</p>
+        <p><b style="font-size: 25px">获赞</b><br />46k</p>
+        <p><b style="font-size: 25px">关注</b><br />238</p>
+        <p><b style="font-size: 25px">投稿</b><br />127</p>
+      </div>
+      <div
+        style="
+          height: 100%;
+          flex: 4;
+          display: flex;
+          align-items: center;
+          background-color: rgb(200, 200, 200);
+        "
+      >
+        <div class="video">
+          <p style="margin-top: 30px">
+            <b style="font-size: 30px">最高播放</b
+            ><br style="font-size: smaller" />Highest View
+          </p>
+          <div style="width: 380px; height: 238px; margin: 0; margin-top: 45px">
+            <img
+              src="Data/HighestView.png"
+              alt="highestView"
+              width="100%"
+              height="100%"
+              class="zoomIn"
+              style="
+                border-radius: 10px;
+                box-shadow: 3px 3px 5px rgb(150, 150, 150);
+              "
+              onmouseenter="highestViewVideoTip(true)"
+              onmouseleave="highestViewVideoTip(false)"
+              onclick="highestViewVideo()"
+            />
+            <p id="highestViewVideoTip" class="videoTip">点击观看视频</p>
+          </div>
+          <p style="font-size: large; margin-top: 10px">(CH/瓷)SNS MEME</p>
+          <p style="font-size: large; margin-bottom: 35px">
+            View: 91k&emsp;Like: 25k&emsp;2022-05-29
+          </p>
+        </div>
+        <newest class="video"
+          ><p style="margin-top: 30px">
+            <b style="font-size: 30px">最新</b
+            ><br style="font-size: smaller" />Newest
+          </p>
+          <div style="width: 380px; height: 238px; margin: 0; margin-top: 45px">
+            <img
+              src="Data/Newest.png"
+              alt="newest"
+              width="100%"
+              height="100%"
+              class="zoomIn"
+              style="
+                border-radius: 10px;
+                box-shadow: 3px 3px 5px rgb(150, 150, 150);
+              "
+              onmouseenter="newestVideoTip(true)"
+              onmouseleave="newestVideoTip(false)"
+              onclick="newestVideo()"
+            />
+            <p id="newestVideoTip" class="videoTip">点击观看视频</p>
+          </div>
+          <p style="font-size: large; margin-top: 10px">
+            (自设/合作)Metro MEME
+          </p>
+          <p style="font-size: large; margin-bottom: 35px">
+            View: 438&emsp;Like: 84&emsp;2022-05-29
+          </p>
+        </newest>
+      </div>
+    </detail>
+    <bottom
+      style="
+        width: 100%;
+        height: 100px;
+        margin-top: 10px;
+        border-top: 2px solid rgb(130, 130, 130);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(160, 160, 160);
+      "
+      ><p
+        style="
+          font-size: larger;
+          color: rgb(100, 100, 100);
+          transform: translateY(-1px);
+        "
+      >
+        <b>一键三连&emsp;&emsp;别盗视频</b>
+      </p>
+    </bottom>
+  </body>
+</html>
