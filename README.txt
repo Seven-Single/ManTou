@@ -1,4 +1,4 @@
-Website of ManTou
+Website for ManTou
 ============================================================
 Double click ManTou.html to open the website.
 Don't do anything with Data file.
